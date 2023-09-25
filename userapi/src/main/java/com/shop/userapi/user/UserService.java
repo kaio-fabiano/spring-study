@@ -1,0 +1,40 @@
+package com.shop.userapi.user;
+
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+  private final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
+  @Autowired private UserRepository userRepository;
+
+  public User create(User user) {
+    return userRepository.save(user);
+  }
+
+  public void delete(Long id) {
+    userRepository.deleteById(id);
+  }
+
+  public User update(User user, Long id) {
+    User entity =
+        userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    User updatedEntity = userMapper.mergeUser(user, entity);
+    userRepository.save(updatedEntity);
+    return updatedEntity;
+  }
+
+  public User findById(Long id) {
+    return userRepository.findById(id).orElse(null);
+  }
+
+  public User findByEmail(String email) {
+    return userRepository.findByEmail(email).orElse(null);
+  }
+
+  public User findByCpf(String cpf) {
+    return userRepository.findByCpf(cpf).orElse(null);
+  }
+}
