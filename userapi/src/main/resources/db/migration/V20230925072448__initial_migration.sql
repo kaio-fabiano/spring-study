@@ -1,6 +1,3 @@
-create sequence access_log_id_seq start 1 increment 1;
-create sequence hibernate_sequence start 1 increment 1;
-
 create table if not exists users
 (
     id         UUID         NOT NULL,
