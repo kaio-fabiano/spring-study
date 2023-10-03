@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,23 +25,24 @@ public class UserController {
   @Autowired private UserService userService;
 
   @GetMapping("/find-by-id")
-  public UserDTO findUserById(@Valid @NotNull @RequestParam UUID id) {
-    return userMapper.userToUserDto(userService.findById(id));
+  public ResponseEntity<UserDTO> findUserById(@Valid @NotNull @RequestParam UUID id) {
+    return ResponseEntity.ok(userMapper.userToUserDto(userService.findById(id)));
   }
 
   @GetMapping("/find-by-email")
-  public UserDTO findUserByEmail(@Valid @NotNull @RequestParam String email) {
-    return userMapper.userToUserDto(userService.findByEmail(email));
+  public ResponseEntity<UserDTO> findUserByEmail(@Valid @NotNull @RequestParam String email) {
+    return ResponseEntity.ok(userMapper.userToUserDto(userService.findByEmail(email)));
   }
 
   @GetMapping("/find-by-cpf")
-  public UserDTO findUserByCpf(@Valid @NotNull @RequestParam String cpf) {
-    return userMapper.userToUserDto(userService.findByCpf(cpf));
+  public ResponseEntity<UserDTO> findUserByCpf(@Valid @NotNull @RequestParam String cpf) {
+    return ResponseEntity.ok(userMapper.userToUserDto(userService.findByCpf(cpf)));
   }
 
   @PostMapping("/create")
-  public UserDTO createUser(@Valid @NotNull @RequestBody CreateUserDTO dto) {
-    return userMapper.userToUserDto(userService.create(userMapper.createUserDtoToUser(dto)));
+  public ResponseEntity<UserDTO> createUser(@Valid @NotNull @RequestBody CreateUserDTO dto) {
+    return ResponseEntity.ok(
+        userMapper.userToUserDto(userService.create(userMapper.createUserDtoToUser(dto))));
   }
 
   @DeleteMapping("/delete")
@@ -49,9 +51,10 @@ public class UserController {
   }
 
   @PutMapping("/update")
-  public UserDTO updateUser(
+  public ResponseEntity<UserDTO> updateUser(
       @Valid @NotNull @RequestBody UpdateUserDTO dto,
       @Valid @NotNull @RequestParam(name = "id") UUID id) {
-    return userMapper.userToUserDto(userService.update(userMapper.updateUserDtoToUser(dto), id));
+    return ResponseEntity.ok(
+        userMapper.userToUserDto(userService.update(userMapper.updateUserDtoToUser(dto), id)));
   }
 }
