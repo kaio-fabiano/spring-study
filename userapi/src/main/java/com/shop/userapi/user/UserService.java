@@ -10,16 +10,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-  private static final String USER_NOT_FOUND_MESSAGE = "User not found";
-
+  public static final String USER_NOT_FOUND_MESSAGE = "User not found";
+  private final UserRepository userRepository;
   private final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
-  @Autowired private UserRepository userRepository;
 
   public User create(User user) {
-    return userRepository.save(user);
+    if (Boolean.TRUE.equals(
+        this.userRepository.existsUniqueFields(user.getEmail(), user.getCPF()))) {
+      throw new ApiRequestException("Email or CPF already exists");
+    }
+
+    this.userRepository.save(user);
+
+    return user;
   }
 
   public void delete(UUID id) {
+    if (!this.userRepository.existsById(id)) {
+      throw new ApiRequestException(USER_NOT_FOUND_MESSAGE);
+    }
     userRepository.deleteById(id);
   }
 
@@ -28,8 +37,11 @@ public class UserService {
         userRepository
             .findById(id)
             .orElseThrow(() -> new ApiRequestException(USER_NOT_FOUND_MESSAGE));
+
     User updatedEntity = userMapper.mergeUser(user, entity);
+
     userRepository.save(updatedEntity);
+
     return updatedEntity;
   }
 
