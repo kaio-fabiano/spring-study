@@ -11,6 +11,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 @Mapper
 public interface UserMapper {
 
+  @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
   UserDTO userToUserDto(User user);
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
