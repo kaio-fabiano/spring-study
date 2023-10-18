@@ -1,6 +1,7 @@
 package com.shop.userapi.user;
 
 import com.shop.userapi.config.exception.ApiRequestException;
+import java.util.List;
 import java.util.UUID;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,9 @@ public class UserService {
     return userRepository
         .findByCpf(cpf)
         .orElseThrow(() -> new ApiRequestException(USER_NOT_FOUND_MESSAGE));
+  }
+
+  public List<User> getAllUsers() {
+    return userRepository.findAll();
   }
 }
