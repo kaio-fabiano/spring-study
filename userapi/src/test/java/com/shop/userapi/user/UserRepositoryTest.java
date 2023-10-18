@@ -18,6 +18,7 @@ class UserRepositoryTest {
     underTest.deleteAll();
   }
 
+  /** Method under test: {@link UserRepository#findByEmail(String)} */
   @Test
   void itShouldCheckIfUserExistsByEmail() {
     // Given
@@ -39,6 +40,7 @@ class UserRepositoryTest {
     assertThat(expected).isTrue();
   }
 
+  /** Method under test: {@link UserRepository#findByEmail(String)} */
   @Test
   void itShouldCheckIfUserDoesNotExistsByEmail() {
     // Given
@@ -51,6 +53,7 @@ class UserRepositoryTest {
     assertThat(expected).isFalse();
   }
 
+  /** Method under test: {@link UserRepository#findByCpf(String)} */
   @Test
   void itShouldCheckIfUserExistsByCPF() {
     // Given
@@ -72,6 +75,7 @@ class UserRepositoryTest {
     assertThat(expected).isTrue();
   }
 
+  /** Method under test: {@link UserRepository#findByCpf(String)} */
   @Test
   void itShouldCheckIfUserDoesNotExistsByCPF() {
     // Given
@@ -84,6 +88,7 @@ class UserRepositoryTest {
     assertThat(expected).isFalse();
   }
 
+  /** Method under test: {@link UserRepository#existsUniqueFields(String, String)} */
   @Test
   void itShouldCheckIfExistsEmailOrCPF() {
     // Given
@@ -106,6 +111,7 @@ class UserRepositoryTest {
     assertThat(expected).isTrue();
   }
 
+  /** Method under test: {@link UserRepository#existsUniqueFields(String, String)} */
   @Test
   void itShouldCheckIfDoesNotExistsEmailOrCPF() {
     // Given
@@ -119,6 +125,7 @@ class UserRepositoryTest {
     assertThat(expected).isFalse();
   }
 
+  /** Method under test: {@link UserRepository#existsById(UUID)} */
   @Test
   void itShouldCheckIfUserExistsById() {
     // Given
@@ -141,6 +148,7 @@ class UserRepositoryTest {
     assertThat(expected).isTrue();
   }
 
+  /** Method under test: {@link UserRepository#existsById(UUID)} */
   @Test
   void itShouldCheckIfUserDoesNotExistsById() {
     // Given
