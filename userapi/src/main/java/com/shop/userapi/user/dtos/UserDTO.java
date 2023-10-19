@@ -1,4 +1,4 @@
-package com.shop.userapi.user.dto;
+package com.shop.userapi.user.dtos;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

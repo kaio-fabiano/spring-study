@@ -5,8 +5,8 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shop.userapi.user.dto.CreateUserDTO;
-import com.shop.userapi.user.dto.UpdateUserDTO;
+import com.shop.userapi.user.dtos.CreateUserDTO;
+import com.shop.userapi.user.dtos.UpdateUserDTO;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

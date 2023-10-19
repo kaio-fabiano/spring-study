@@ -1,4 +1,4 @@
-package com.shop.userapi.user.dto;
+package com.shop.userapi.user.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

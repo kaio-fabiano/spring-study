@@ -1,8 +1,8 @@
 package com.shop.userapi.user;
 
-import com.shop.userapi.user.dto.CreateUserDTO;
-import com.shop.userapi.user.dto.UpdateUserDTO;
-import com.shop.userapi.user.dto.UserDTO;
+import com.shop.userapi.user.dtos.CreateUserDTO;
+import com.shop.userapi.user.dtos.UpdateUserDTO;
+import com.shop.userapi.user.dtos.UserDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;

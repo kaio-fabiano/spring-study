@@ -1,8 +1,8 @@
 package com.shop.userapi.user;
 
-import com.shop.userapi.user.dto.CreateUserDTO;
-import com.shop.userapi.user.dto.UpdateUserDTO;
-import com.shop.userapi.user.dto.UserDTO;
+import com.shop.userapi.user.dtos.CreateUserDTO;
+import com.shop.userapi.user.dtos.UpdateUserDTO;
+import com.shop.userapi.user.dtos.UserDTO;
 import java.util.List;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
