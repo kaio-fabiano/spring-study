@@ -200,7 +200,7 @@ class UserControllerTest {
             .phone("(42) 97890-1234")
             .build();
 
-    given(userRepository.existsUniqueFields(dto.getEmail(), dto.getCPF())).willReturn(true);
+    given(userRepository.existsUniqueFields(dto.email(), dto.CPF())).willReturn(true);
 
     // When
     // Then
@@ -293,9 +293,9 @@ class UserControllerTest {
     // Then
     result.andExpect(status().isOk());
     result.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id.toString()));
-    result.andExpect(MockMvcResultMatchers.jsonPath("$.email").value(updateUser.getEmail()));
-    result.andExpect(MockMvcResultMatchers.jsonPath("$.phone").value(updateUser.getPhone()));
-    result.andExpect(MockMvcResultMatchers.jsonPath("$.password").value(updateUser.getPassword()));
-    result.andExpect(MockMvcResultMatchers.jsonPath("$.name").value(updateUser.getName()));
+    result.andExpect(MockMvcResultMatchers.jsonPath("$.email").value(updateUser.email()));
+    result.andExpect(MockMvcResultMatchers.jsonPath("$.phone").value(updateUser.phone()));
+    result.andExpect(MockMvcResultMatchers.jsonPath("$.password").value(updateUser.password()));
+    result.andExpect(MockMvcResultMatchers.jsonPath("$.name").value(updateUser.name()));
   }
 }
