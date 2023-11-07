@@ -1,0 +1,38 @@
+version: '0.1'
+
+services:
+  postgres-product-api:
+    image: postgres:latest
+    container_name: 'postgres-product-api'
+    environment:
+      POSTGRES_DB: ${PRODUCT_DATASOURCE_DB}
+      POSTGRES_USER: ${PRODUCT_DATASOURCE_USERNAME}
+      POSTGRES_PASSWORD: ${PRODUCT_DATASOURCE_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+      TZ: 'UTC'
+      PGTZ: 'UTC'
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'pg_isready -d ${PRODUCT_DATASOURCE_DB} -U ${PRODUCT_DATASOURCE_USERNAME}',
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+    ports:
+      - 5432:5432
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '10'
+    #    restart: unless-stopped
+    networks:
+      - shop-test-network
+networks:
+  shop-test-network:
+    external: false

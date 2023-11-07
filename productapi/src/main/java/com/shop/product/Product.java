@@ -6,13 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serial;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serial;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -21,13 +20,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "product")
 public class Product extends BaseEntity {
-    @Serial
-    private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private String name;
-    private String description;
-    private Double price;
-    private Integer quantity;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
+
+  private String name;
+  private String description;
+  private Double price;
+  private Integer quantity;
 }
