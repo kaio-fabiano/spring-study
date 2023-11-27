@@ -1,5 +1,7 @@
 package com.shop.product.dtos;
 
+import java.util.UUID;
+
 public record ProductDTO(
     String id,
     String name,
@@ -7,4 +9,5 @@ public record ProductDTO(
     Double price,
     Integer quantity,
     String createdAt,
-    String updatedAt) {}
+    String updatedAt,
+    UUID userId) {}
